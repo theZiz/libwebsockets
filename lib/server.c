@@ -90,6 +90,9 @@ int lws_context_init_server(struct lws_context_creation_info *info,
 		serv_addr4.sin_addr.s_addr = INADDR_ANY;
 		serv_addr4.sin_family = AF_INET;
 
+		int enable = 1;
+		setsockopt(sockfd, SOL_SOCKET, SO_REUSEADDR, &enable, sizeof(int));
+
 		if (info->iface && interface_to_sa(context, info->iface,
 				   (struct sockaddr_in *)v, n) < 0) {
 			lwsl_err("Unable to find interface %s\n", info->iface);
