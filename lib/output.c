@@ -586,7 +586,17 @@ lws_ssl_capable_write_no_ssl(struct lws *wsi, unsigned char *buf, int len)
 #if LWS_POSIX
 	n = send(wsi->sock, (char *)buf, len, MSG_NOSIGNAL);
 	if (n >= 0)
+	{
+		int N = n;
+		while (N < len)
+		{
+			buf = &(buf[N]);
+			len -= N;
+			N = send(wsi->sock, buf, len, MSG_NOSIGNAL);
+			n += N;
+		}
 		return n;
+	}
 
 	if (LWS_ERRNO == LWS_EAGAIN ||
 	    LWS_ERRNO == LWS_EWOULDBLOCK ||
