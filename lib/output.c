@@ -171,7 +171,7 @@ handle_truncated_send:
 		/* what we just sent went out cleanly */
 		return n;
 
-	if (n && wsi->u.ws.clean_buffer)
+///	if (n && wsi->u.ws.clean_buffer)
 		/*
 		 * This buffer unaffected by extension rewriting.
 		 * It means the user code is expected to deal with
@@ -179,7 +179,7 @@ handle_truncated_send:
 		 * sent, so on next send will just resume sending
 		 * payload)
 		 */
-		 return n;
+///		 return n;
 
 	/*
 	 * Newly truncated send.  Buffer the remainder (it will get
@@ -587,14 +587,14 @@ lws_ssl_capable_write_no_ssl(struct lws *wsi, unsigned char *buf, int len)
 	n = send(wsi->sock, (char *)buf, len, MSG_NOSIGNAL);
 	if (n >= 0)
 	{
-		int N = n;
+		/*int N = n;
 		while (N < len)
 		{
 			buf = &(buf[N]);
 			len -= N;
 			N = send(wsi->sock, buf, len, MSG_NOSIGNAL);
 			n += N;
-		}
+		}*/
 		return n;
 	}
 
