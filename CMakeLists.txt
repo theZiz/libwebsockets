@@ -1060,6 +1060,7 @@ endif()
 install(FILES
                "${PROJECT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/LibwebsocketsConfig.cmake"
                "${PROJECT_BINARY_DIR}/LibwebsocketsConfigVersion.cmake"
+               "${PROJECT_BINARY_DIR}/LibwebsocketsTargets.cmake"
                DESTINATION "${LWS_INSTALL_CMAKE_DIR}" COMPONENT dev)
 
 # build subdir is not part of sources
